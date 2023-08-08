@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <variable
+            name="meal"
+            type="com.dullgames.mealsearchapplication.domain.model.Meal" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                app:urlToImage="@{meal.image}"
+                android:scaleType="fitXY"
+                tools:src="@drawable/error"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{meal.name}"
+                style="@style/TextAppearance.AppCompat.Title"
+                tools:text="Chicken"
+                android:padding="10dp"
+                />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+</layout>
