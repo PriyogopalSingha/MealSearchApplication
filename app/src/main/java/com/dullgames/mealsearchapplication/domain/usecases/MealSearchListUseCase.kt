@@ -15,15 +15,15 @@ class MealSearchListUseCase @Inject constructor(private val repository: MealSear
     operator fun invoke(s: String): Flow<Resource<List<Meal>>> = flow {
         try {
             emit(Resource.Loading())
-
             val response = repository.getMealSearchList(s)
-            val list = if(response.meals.isNullOrEmpty()) emptyList<Meal>() else response.meals.map { it.toDomainMeal() }
-            emit(Resource.Success(list))
+            val list =
+                if (response.meals.isNullOrEmpty()) emptyList() else response.meals.map { it -> it.toDomainMeal() }
+            emit(Resource.Success(data = list))
 
         } catch (e: HttpException) {
-            emit(Resource.Error(e.localizedMessage?:"Unknown Error"))
+            emit(Resource.Error(message = e.localizedMessage ?: "Unknown Error"))
         } catch (e: IOException) {
-            emit(Resource.Error(e.localizedMessage?:"Check for Internet Connection"))
+            emit(Resource.Error(message = e.localizedMessage ?: "Check for Internet Connection"))
         } catch (e: Exception) {
         }
     }

@@ -10,5 +10,5 @@ interface MealSearchAPI {
     suspend fun getMealList(@Query("s") s: String): MealsDTO
 
     @GET("api/json/v1/1/lookup.php")
-    suspend fun getMealDetails(@Query("id") id: String): MealsDTO
+    suspend fun getMealDetails(@Query("i") i: String): MealsDTO
 }

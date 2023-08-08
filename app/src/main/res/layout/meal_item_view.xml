@@ -25,7 +25,7 @@
             >
             <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="180dp"
                 app:urlToImage="@{meal.image}"
                 android:scaleType="fitXY"
                 tools:src="@drawable/error"
@@ -36,6 +36,7 @@
                 android:text="@{meal.name}"
                 style="@style/TextAppearance.AppCompat.Title"
                 tools:text="Chicken"
+                android:textSize="14sp"
                 android:padding="10dp"
                 />
 

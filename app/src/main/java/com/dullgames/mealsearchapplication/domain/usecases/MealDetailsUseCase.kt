@@ -11,18 +11,18 @@ import java.io.IOException
 import javax.inject.Inject
 
 class MealDetailsUseCase @Inject constructor(private val repository: MealDetailsRepository) {
-    operator fun invoke(id: String): Flow<Resource<MealDetails>> = flow {
+    operator fun invoke(id: String): Flow<Resource<List<MealDetails>>> = flow {
         try {
             emit(Resource.Loading())
-
-            val response = repository.getMealDetails(id).meals[0].toDomainMealDetails()
-            emit(Resource.Success(response))
+            val data = repository.getMealDetails(id)
+            val domainData =
+                if (!data.meals.isNullOrEmpty()) data.meals.map { it -> it.toDomainMealDetails() } else emptyList()
+            emit(Resource.Success(data = domainData))
 
         } catch (e: HttpException) {
             emit(Resource.Error(e.localizedMessage ?: "Unknown Error"))
         } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage ?: "Check for Internet Connection"))
-        } catch (e: Exception) {
-        }
+        } catch (e: Exception) {        }
     }
 }

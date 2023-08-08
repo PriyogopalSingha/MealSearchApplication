@@ -3,9 +3,10 @@ package com.dullgames.mealsearchapplication.data.model
 import com.dullgames.mealsearchapplication.domain.model.Meal
 import com.dullgames.mealsearchapplication.domain.model.MealDetails
 
+
 data class MealDTO(
     val dateModified: String?,
-    val idMeal: String?,
+    val idMeal: String,
     val strArea: String?,
     val strCategory: String?,
     val strCreativeCommonsConfirmed: String?,
@@ -59,15 +60,17 @@ data class MealDTO(
     val strYoutube: String?
 )
 
+
 fun MealDTO.toDomainMeal(): Meal {
     return Meal(
-        mealId = this.idMeal ?: "",
+        mealId = this.idMeal,
         name = this.strMeal ?: "",
         image = this.strMealThumb ?: ""
     )
 }
 
-fun MealDTO.toDomainMealDetails(): MealDetails{
+
+fun MealDTO.toDomainMealDetails(): MealDetails {
     return MealDetails(
         name = this.strMeal ?: "",
         image = this.strMealThumb ?: "",
@@ -116,6 +119,5 @@ fun MealDTO.toDomainMealDetails(): MealDetails{
         measure18 = this.strMeasure18 ?: "",
         measure19 = this.strMeasure19 ?: "",
         measure20 = this.strMeasure20 ?: "",
-
         )
 }

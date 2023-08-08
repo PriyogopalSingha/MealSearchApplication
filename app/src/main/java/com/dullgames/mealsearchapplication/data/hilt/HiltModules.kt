@@ -22,16 +22,17 @@ object HiltModules {
     @Singleton
     fun provideMealSearchAPI(): MealSearchAPI {
         return Retrofit.Builder().baseUrl(Constants.BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create()).build().create(MealSearchAPI::class.java)
+            .addConverterFactory(GsonConverterFactory.create()).build()
+            .create(MealSearchAPI::class.java)
     }
 
     @Provides
-    fun provideMealSearchRepository(mealSearchAPI: MealSearchAPI): MealSearchRepository{
+    fun provideMealSearchRepository(mealSearchAPI: MealSearchAPI): MealSearchRepository {
         return MealSearchRepositoryImpl(mealSearchAPI)
     }
 
     @Provides
-    fun provideMealDetailsRepository(mealSearchAPI: MealSearchAPI): MealDetailsRepository{
+    fun provideMealDetailsRepository(mealSearchAPI: MealSearchAPI): MealDetailsRepository {
         return MealDetailsRepositoryImpl(mealSearchAPI)
     }
 
