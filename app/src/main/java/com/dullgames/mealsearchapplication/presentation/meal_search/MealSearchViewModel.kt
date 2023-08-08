@@ -22,7 +22,6 @@ class MealSearchViewModel @Inject constructor(val mealSearchListUseCase: MealSea
 
 
     fun searchMealInList(s: String){
-        viewModelScope.launch(Dispatchers.IO) {
             mealSearchListUseCase(s).onEach {
                 when(it){
                     is Resource.Loading -> {
@@ -35,7 +34,7 @@ class MealSearchViewModel @Inject constructor(val mealSearchListUseCase: MealSea
                         _mealSearchList.value = MealSearchState(error=it.message?:"")
                     }
                 }
-            }
-        }
+            }.launchIn(viewModelScope)
+
     }
 }
